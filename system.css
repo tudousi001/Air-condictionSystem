@@ -1,0 +1,300 @@
+*{padding: 0;margin: 0;}
+
+/*头*/
+header{
+	position: relative;
+    width:100%;
+    height: 60px;
+    font-size: 0;
+    background-color:gainsboro;
+    /*margin-bottom: 30px;*/
+}
+header .banner-left{
+   /*border: 1px solid black;*/
+    height: 60px;
+    width: 25%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 60px;
+    /*text-align:center;*/
+    
+    position: relative;
+    left: 8%;
+    
+    background: url(image/logo1.gif) no-repeat left;
+
+}
+header .banner-left h1{
+	position:absolute;
+    color: #4E3A4F;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    cursor:default;
+    left: 53px;
+}
+#english{
+	font-size: 10px;
+	position: absolute;
+	top: 20px;
+	color: #4E3A4F;
+	left: 53px;
+}
+header nav{
+    height: 60px;
+    width: 38%;
+    display: inline-block;
+    vertical-align: middle;
+    
+    position: relative;
+    left: 23%;
+}
+header nav ul{
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    list-style: none;
+    /*box-sizing: border-box;*/
+    margin: 0;
+    padding: 0;
+}
+header nav ul li{
+	/*border: 1px solid black;*/
+    display: inline-block;
+    width: 20%;
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+    color: #534141;
+    cursor: default;
+    
+    -webkit-transition:color 0.4s ease-in-out;/*兼容Safari　Chrome */
+    -moz-transition:color 0.4s ease-in-out;/* 兼容老版本火狐*/
+    transition:color 0.4s ease-in-out;
+}
+header nav ul li:hover{
+    color: rgb(137,171,172);
+}
+header nav ul .move{
+    position: absolute;
+    border-top: 4px solid rgb(137,171,172);
+    left:20%;
+    top: 55px;
+    
+    -webkit-transition: left 0.4s ease-in-out;
+    -moz-transition: left 0.4s ease-in-out;
+    transition: left 0.4s ease-in-out;
+}
+header nav ul li:nth-child(2n):hover~.move{
+    left: 0;
+}
+header nav ul li:nth-child(2):hover~.move{
+    left: 20%;
+}
+header nav ul li:nth-child(3):hover~.move{
+    left: 40%;
+}
+header nav ul li:nth-child(4):hover~.move{
+    left: 60%;
+}
+header nav ul li:nth-child(5):hover~.move{
+    left: 80%;
+}
+
+
+
+
+header .banner-right{
+	/*border: 1px solid black;*/
+    font-size: 14px;
+    color: #E53C3C;
+    height: 60px;
+    width: 7%;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    
+    position: relative;
+    left: 30%;
+    
+    background: url(../images/icon-2.jpg) no-repeat left;
+    background-size: 15px 18px;
+}
+header .banner-right .move{
+    width: 0;
+    border-top: 2px solid rgb(137,171,172);
+    position: absolute;
+    top: 45px;
+    left: 25%;
+    
+    -webkit-transition:width 0.4s ease-in-out;
+    -moz-transition:width 0.4s ease-in-out;
+    transition:width 0.4s ease-in-out;
+}
+header .banner-right:hover .move{
+    width: 50px;
+}
+
+/*中间*/
+#content{
+	text-align: center;
+	/*position: relative;*/
+}
+#main{
+	
+	width: 1080px;
+	height: 670px;
+	background: rgb(252,247,220);
+	border: 2px solid gainsboro;
+	border-radius:5px;
+	margin: 10px;
+	margin-left: 130px;
+	/*margin-right: 20px;*/
+
+}
+
+#list_l{
+	width: 100px;
+	height: 200px;
+	position: absolute;
+	left: 0px;
+	top: 30px;
+	
+}
+#list_l ul{width: 80px;height: 200px;margin: 40px 0;display: inline-block;position: absolute;float: left;list-style: none;}
+#list_l ul li{width: 80px;height: 36px;border: 1px solid gainsboro;text-align: center;line-height: 36px;font-family: "微软雅黑";
+	font-size: 16px;}
+
+
+#list_b{
+	width: 200px;
+	height: 30px;	
+	margin: 0 auto;
+	/*bottom: 5px;*/
+	/*text-align: center;*/
+	margin-bottom: 20px;
+}
+#list_b ul{
+	width: 200px;
+	height: 30px;
+    position: absolute;
+    list-style: none;}
+#list_b ul li{
+	width: 30px;
+	height: 30px;
+	border: 1px solid gainsboro;
+	float:left;
+	text-align: center;
+	line-height: 30px;
+	font-family: "微软雅黑";
+	font-size: 12px;}
+
+
+
+/*底部*/
+footer{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    background-color:gainsboro;
+}
+footer .mes,footer .back{
+    width: 300px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: gray;
+    font-size: 10px;
+}
+footer .mes{
+    float: left;
+}
+footer .mes span{
+    cursor: pointer;
+}
+footer .back{
+    float: right;
+}
+footer .back a{
+    text-decoration: none;
+    color: gray;
+    
+    -webkit-transition: color 0.4s ease-in-out;
+    -moz-transition: color 0.4s ease-in-out;
+    transition: color 0.4s ease-in-out;
+}
+footer .back a:hover{
+    color: black;
+}
+
+.con{  
+	background: white;
+	padding:2px ;
+	display: inline-block;
+	width: 100px;
+	height: 152px;
+	border: 2px solid gainsboro;
+	border-radius: 2px;   
+	margin: 30px;
+}
+.state_on{
+	width: 100px;
+	height:45px;
+	background-color: rgb(36,170,152);
+	border-radius: 4px;
+	line-height: 45px;
+	text-align: center;
+	font-size: 14px;
+				
+}
+.state_off{
+	width: 100px;
+	height:45px;
+	background-color: rgb(198,204,210);
+	border-radius: 4px;
+	line-height: 45px;
+	text-align: center;
+	font-size: 14px;
+}
+span{
+    color: #4E3A4F;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+.turnOff{
+	width: 100px;
+	height: 25px;
+	margin-top: 3px;
+	position: relative;
+}
+.turnOff span{
+				
+	display: inline-block;
+	position: absolute;
+	line-height: 25px;
+	left: 0;
+}
+.off{
+	width: 50px;
+	height: 25px;
+	background: url("image/off.gif") no-repeat;
+	position: absolute;
+	right: 3px;
+}
+.on{
+	width: 50px;
+	height: 25px;
+	background: url("image/on.gif") no-repeat;
+	position: absolute;
+	right: 3px;
+}
+.right{
+	color: #4E3A4F;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	position: absolute;
+	right: 3px;
+	line-height: 25px;
+}

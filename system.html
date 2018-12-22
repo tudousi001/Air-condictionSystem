@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="system.css"/>
+		
+	</head>
+	<body>
+		
+		<!--<div id="Div">-->
+			
+			<header>
+            
+            <div class="banner-left">
+                <h1>空调远程管理系统</h1>
+                <div id="english">Air conditioning remote management system</div>
+            </div>
+            <nav>
+                <ul>
+                    <li style="background: url(image/home.gif) no-repeat left" >首页</li>
+                    <li style="background: url(image/manage.gif) no-repeat left">系统控制</li>
+                    <li style="background: url(image/statistic.gif) no-repeat left">数据统计</li>
+                    <li style="background: url(image/client.gif) no-repeat left">个人中心</li>
+                    <li style="background: url(image/message.gif) no-repeat left">消息</li>
+                    <li class="move"></li>
+                </ul>
+            </nav>
+            <div class="banner-right" style="background: url(image/checkin.gif) no-repeat left">
+                <span >登录</span>
+                <div class="move"></div>
+            </div>
+           
+        </header>
+        
+        
+        <div id="content">
+        	<div id="list_l">
+        		<ul>
+        			<li style="background-color:gainsboro;">一楼</li>
+        			<li>二楼</li>
+        			<li>三楼</li>
+        			<li>四楼</li>
+        		</ul>
+        	</div>
+        	<div id="main">     		
+        	     <div class="con">
+		        		<div class="state_on One" id="statediv1">
+		        			空调1
+		        		</div>
+		        		
+		        		<div class="turnOff">
+		        			<span>开关：</span>
+		        		    <div class="on Two" onclick="change(1)" id="mydiv1" > </div>  
+		        		</div>
+		        		
+		        		<div class="turnOff">
+		        			<span>温度：</span>
+		        			<div class="right">0℃</div>
+		        		</div>
+		        		<div class="turnOff">
+		        			<span>模式：</span>
+		        			<div class="right">自动</div>
+		        		</div>
+		        		<div class="turnOff">
+		        			<span>运行时间：</span>
+		        			<div  class="right">12h</div>
+		        		</div>
+      		
+        	    </div>
+        	    
+        	   
+	
+        	</div>
+        	 <div id="list_b">
+        		<ul>
+        			<li style="background-color:gainsboro;">1</li>
+        			<li>2</li>
+        			<li>3</li>
+        			<li>4</li>
+        			<li>>></li>
+        		</ul>
+        	    </div>
+        </div>
+        
+        
+        <footer>
+            <div class="mes">
+                <span>@2018.4.15</span>
+            </div>
+            <div class="back">
+                <a href="#top">Back to top</a>
+            </div>
+        </footer>
+        
+			
+       <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+       <script>
+        //创建空调
+         	 var a=[];
+         	 var oMain=document.getElementById("main");
+         	 var str='';
+         	 for (var  i=1;i<19;i++) {
+               	   str+=	`<div class="con">
+		        		<div class="one" id="statediv${i}">
+		        			空调${i}
+		        		</div>
+		        		
+		        		<div class="turnOff">
+		        			<span>开关：</span>
+		        		    <div class="two" onclick="change(${i})" id="mydiv${i}" > </div>  
+		        		</div>
+		        		
+		        		<div class="turnOff">
+		        			<span>温度：</span>
+		        			<div class="right">26℃</div>
+		        		</div>
+		        		<div class="turnOff">
+		        			<span>模式：</span>
+		        			<div class="right">自动</div>
+		        		</div>
+		        		<div class="turnOff">
+		        			<span>运行时间：</span>
+		        			<div  class="right">${i}h</div>
+		        		</div>
+      		
+        	    </div>`;
+               }
+                oMain.innerHTML=str;
+                
+                
+         	//取数据status初始化空调状态
+         	    //创建ajax对象
+			var xhr= new XMLHttpRequest();
+          
+			xhr.open("POST","/AirCondition/InFo.xml",true);
+				
+		 	xhr.onreadystatechange=function(){
+				if(this.status==200 && this.readyState==4){
+						
+				getStatus();
+		        	   
+		        	   
+				
+				    }
+				
+				}
+            xhr.send();
+         	
+         	//更新空调状态函数
+         	function getStatus(){
+         	
+         		var result = xhr.documentElement; //获取全部内容	
+				var len= result.responseXML.getElementsByTagName("status").length;
+		
+				var aOne=document.getElementsByClassName("one");
+				var aTwo=document.getElementsByClassName("two");
+				
+				for (var i=0;i<len;i++) {
+					a.push(result.getElementsByTagName("status")[i].childNodes[0].nodeValue);
+				
+					if (a[i]==0) {
+						aTwo[i].className="off two"; 
+		                aOne[i].className="state_off one";
+					} else{
+						aTwo[i].className="on two";
+		                aOne[i].className="state_on one";
+					}
+				}
+				 console.log(result.getElementsByTagName("status")[0].childNodes[0].nodeValue);
+         	}
+         	//定时器刷新空调显示的状态
+         	var timer='';
+        	timer=setInterval(getStatus,500);
+       	
+         	//按钮开关，发送数据
+         	 function change(n){  
+         	 	var emediv=document.getElementById('mydiv'+n);  
+                var statediv=document.getElementById('statediv'+n);  
+
+           	    emediv.onclick=function(){
+           	    	console.log(1);
+           	    	        if(emediv.className=="off"){  
+		                            //此处写后台交互  
+		                        
+		                            emediv.className="on";
+		                            statediv.className="state_on";
+		                            $.ajax ({
+										
+										　 url:'/AirCondition/switch',
+										   Type:'POST',
+										   datatype:'json',
+										   contentType:'application/json',
+										　　data:{					
+										　　　　Id:`${n}`,
+										　　　　status:'1'
+										　　　　}
+										   
+										　　})                                
+		                    }else{  
+		                            emediv.className="off";  
+		                            statediv.className="state_off";
+		                             $.ajax ({
+								
+										　 url:'/AirCondition/switch',
+										   Type:'POST',
+										   datatype:'json',
+										   contentType:'application/json',
+										　　data:{					
+										　　　　Id:`${n}` ,
+										　　　　status:'0'
+										　　　　}
+								   
+								　　　　　})
+    							     
+		                    }
+					    }
+           	}
+         	
+          
+          
+		</script>  
+		
+	</body>
+</html>
